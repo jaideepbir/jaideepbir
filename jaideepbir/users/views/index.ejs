@@ -1,0 +1,44 @@
+<% include partials/header %>
+    <h1><%= pageTitle %></h1>
+    
+    <h2>Form To Add People</h2>
+    <% if(errors) { %>
+        <% errors.forEach(function(error){ %>
+            <li><%= error.msg%> </li>
+        <%  }) %>
+    <% } %>
+    <br><br>
+    <form method="POST", action="/people/add">
+        <label>First Name</label>
+        <br>
+        <input type="text" name='first_name'>
+        <br>
+        <label>Last Name</label>
+        <br>
+        <input type="text" name='last_name'>
+        <br>
+        <label>Email</label>
+        <br>
+        <input type="text" name="email">
+        <br>
+        <label>Age</label>
+        <br>
+        <input type="text" name='age'>
+        <br><br>
+        <input type="submit" value='Submit'>
+    </form>
+    <% docs.forEach(function(person){ %>
+        <li><%= person.first_name %>  
+            <%= person.last_name %> -
+            <a href="#" class="deleteUser" data-id="<%= person.email %>"> Delete</a>
+        </li>
+            <!-- First Name: <%= person.first_name %><br> -->
+            <!-- Last Name: <%= person.last_name %><br> -->
+            <!-- Email: <%= person.email %><br>
+            Age: <%= person.age %><br> -->
+    <% }) %>
+    
+    <br><br>
+    <h3> Play Nice! </h3>
+
+<% include partials/footer %>
