@@ -110,7 +110,7 @@ const VideoObjectType = new GraphQLObjectType({
 })
 
 const VisualType = new GraphQLUnionType({
-    name: 'Visuals',
+    name: 'VisualData',
     types: [ ImageObjectType, VideoObjectType ],
     resolveType(value) {
         if (value instanceof VideoObjectType) { //verify what isInstance of Video does
@@ -201,67 +201,68 @@ const StoryType = new GraphQLObjectType({
         language: {type: GraphQLString},
         type: {type: GraphQLString},
         subcat: {type: GraphQLString},
-        addedtime: {type: GraphQLInt},
-        status: {type: GraphQLString},
-        starred: {type: GraphQLInt},
-        starredBy: {type: GraphQLString},
-        text: {type: GraphQLString},
         title: {type: GraphQLString},
+        text: {type: GraphQLString},
         gist: {type: GraphQLList(GraphQLString)},
         VideoTitleObject: {type: TitleObjectType},
+        imagecount: {type: GraphQLString},
         finalImages: {type: GraphQLList(GraphQLString)},
-        StoryBY: {type: GraphQLString},
-        CreatedBY: {type: GraphQLString},
-        //VisualData: {type: GraphQLList(VisualType)},
+        zoomObjects: {type: ZoomObjectType},
+        // VisualData: {type: GraphQLList(VisualType)},
+        MuteAllAudio: {type: GraphQLString},
         gistAudio: {type: GraphQLList(GraphQLString)},
         AudioVoice: {type: GraphQLString},
-        /* BGmusic: { //Duplicate field with hyphen solved.
+        BGmusic: { //Duplicate field with hyphen solved.
             type: GraphQLString,
             resolve: (bgpath) => {
                 // get the value `bg-music` from the passed object 'bg'
                 const bgm = bgpath['bg-music'];
                 return bgm;
-         }, */
+            }
+        },
+        backgroundMusicData: {type: BackgroundMusicType},
         // "bg-music": {type: GraphQLString}, //Duplicate field with hyphen issue.
         templateName: {type: GraphQLString},
         templateId: {type: GraphQLString},
-        backgroundMusicData: {type: BackgroundMusicType},
-        video_transtion: {type: GraphQLString}, //needs alias
-        // videoTranstions: {type: VideoTranstionsType}, //needs alias
-        MuteAllAudio: {type: GraphQLString},
         videoClips: {type: GraphQLString},
         "video_format": {type: GraphQLString},
-        videoAdded: {type: GraphQLInt},
-        imagecount: {type: GraphQLString},
-        AddBy: {type: GraphQLString},
-        zoomObjects: {type: ZoomObjectType},
-        // VisualFrames: {type: TransFramesType},
+        VisualFrames: {type: TransFramesType},
+        video_transtion: {type: GraphQLString}, //needs alias
+        videoTranstions: {type: VideoTranstionsType}, //needs alias
         TransitionsProcessed: {type: GraphQLString},
         TransitionClips: {type: TransitionClipType},
-        // KeywordsIndexes: null, //Why null?
         TotolTransitions: {type: GraphQLInt},
+        // KeywordsIndexes: null, //Why null?
         videoPath: {type: GraphQLString},
         server: {type: GraphQLString},
         endtime: {type: GraphQLInt},
-        log: {type: GraphQLString},
         videoEditedOn: {type: GraphQLInt},
         reprocess: {type: GraphQLString},
-        EditBy: {type: GraphQLString},
-        InProcess: {type: GraphQLString},
         CustomOutroPath: {type: GraphQLString},
         CustomOutro: {type: GraphQLString},
         ecoStatus: {type: GraphQLString},
+        status: {type: GraphQLString},
+        StoryBY: {type: GraphQLString},
+        CreatedBY: {type: GraphQLString},
+        AddBy: {type: GraphQLString},
+        addedtime: {type: GraphQLInt},
+        starred: {type: GraphQLInt},
+        starredBy: {type: GraphQLString},
+        videoAdded: {type: GraphQLInt},
+        EditBy: {type: GraphQLString},
+        InProcess: {type: GraphQLString},
+        log: {type: GraphQLString},
         approver: {type: GraphQLString},
         ApproverEmail: {type: GraphQLString},
         publishYouTube: {type: GraphQLString},
         publishFacebook: {type: GraphQLString},
         publishWordpress: {type: GraphQLString},
         publishDailymotion: {type: GraphQLString},
-        // CMSStatus: null, //Why null?
         approvedon: {type: GraphQLInt},
         RejectMainReasonCategory: {type: GraphQLString},
         RejectReason: {type: GraphQLString},
-        RejectCustomReason: {type: GraphQLString}
+        RejectCustomReason: {type: GraphQLString},
+        // CMSStatus: null, //Why null?
     })
 })
 
