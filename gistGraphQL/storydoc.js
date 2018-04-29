@@ -292,6 +292,18 @@ const RootQuery = new GraphQLObjectType({
                 });
             }
         },
+        stories: {
+            type: new GraphQLList(StoryType),
+            resolve: (root, args) => {
+                return new Promise((resolve, reject) => {
+                        db.stories.find({}, {}, (err, res) => {
+                            err ? reject(err): resolve(res);
+                        });
+                    });
+            }
+            
+        },
+        
         // clip: {
         //     type: ClipDataType,
         //     args: {
